@@ -16,9 +16,14 @@ the slider
 the edges of the slides, but adequately spaced
 */
 
+* {
+    box-sizing: border-box;
+}
+
 .carousel {
     max-width: 600px;
     position: relative;
+    margin: 0 auto;
 }
 
 .carousel .carousel-item {
@@ -62,6 +67,33 @@ the edges of the slides, but adequately spaced
 
 .carousel .carousel-actions button#carousel-button-next {
     margin-right: 20px;   
+}
+
+.carousel-dots {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    margin-right: 3px;
+    border: 1px solid darkgray;
+}
+
+.current-dot {
+    background: darkgray;
+    border: 1px solid black;
+}
+
+.carousel-dot:last-of-type {
+    margin-right: 0;
 }
 
 

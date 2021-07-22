@@ -14,6 +14,9 @@ const totalSlides = slides.length;
 
 document.getElementById('carousel-button-next').addEventListener('click', moveToNextSlide);
 document.getElementById('carousel-button-prev').addEventListener('click', moveToPrevSlide);
+const carouselDots = document.getElementById('carousel-dots')
+console.log(carouselDots)
+
 
 function moveToNextSlide() {
     slides[slidePosition].classList.toggle("carousel-item-visible");
