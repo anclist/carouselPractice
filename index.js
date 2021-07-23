@@ -72,3 +72,8 @@ function removeClass() {
     currentDot.classList.toggle('current-dot')
     currentSlide.classList.toggle('carousel-item-visible')
 }
+
+// Go to the next slide every five seconds
+window.setInterval(function() {
+    moveToNextSlide()
+  }, 5000); // 5000 milliseconds (5 second)
