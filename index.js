@@ -1,21 +1,12 @@
-/*
-    Hiding non-active slides
-    
-    1) In our 'styles.css', add a new class 'carousel-item-hidden' that is set to display none
-    2) Create a new function called 'hideAllSlides'
-    3) Inside 'hideAllSlides' use a 'for of loop' to iterate through the slides (each iteration will give you direct access to 'carousel-item')
-    4) When inside the 'for of loop', remove the class 'carousel-item-visible' and add the class 'carousel-item-hidden' - all our slides will now be hidden, and inside 'moveToNextSlide' at the end, we add back the slide we want visible!
-    5) Call 'hideAllSlides' right away within the function 'moveToNextSlide' - make sure it's before any other code!
-*/
 
+// Grab the elements form the page
 const slides = document.getElementsByClassName('carousel-item')
 const totalSlides = slides.length
-
 document.getElementById('carousel-button-next').addEventListener('click', moveToNextSlide)
 document.getElementById('carousel-button-prev').addEventListener('click', moveToPrevSlide)
 const carouselDotsContainer = document.getElementById('carousel-dots')
 
-
+// Create the dot elements and add them to the page, based on the number of images
 for (let i = 0; i < totalSlides; i++) {
     let dot = document.createElement('div')
     dot.className = "carousel-dot"
@@ -24,12 +15,14 @@ for (let i = 0; i < totalSlides; i++) {
     carouselDotsContainer.appendChild(dot)
 }
 
+// Assing the current slide and current dot classes to the first element of the image collection and the dot collection
 const firstDot = carouselDotsContainer.firstChild.nextElementSibling
 firstDot.classList.add('current-dot')
-
 const dots = document.getElementsByClassName('carousel-dot')
 
+// Set the slider position as the index of the first dot based on the dataset created on line 14
 let slidePosition = document.querySelector('.current-dot').dataset.index
+
 
 function moveToNextSlide() {
     removeClass()
@@ -76,6 +69,6 @@ function moveSlide(item) {
 function removeClass() {
     let currentDot = document.querySelector('.current-dot')
     let currentSlide = document.querySelector('.carousel-item-visible')
-    currentDot.classList.toggle(    'current-dot')
+    currentDot.classList.toggle('current-dot')
     currentSlide.classList.toggle('carousel-item-visible')
 }
