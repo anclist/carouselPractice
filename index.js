@@ -9,28 +9,30 @@
 */
 
 const slides = document.getElementsByClassName('carousel-item')
-let slidePosition = 0
 const totalSlides = slides.length
 
 document.getElementById('carousel-button-next').addEventListener('click', moveToNextSlide)
 document.getElementById('carousel-button-prev').addEventListener('click', moveToPrevSlide)
-const carouselDots = document.getElementById('carousel-dots')
-
-let carouselDot = `<div class="carousel-dot current-dot"></div>`
+const carouselDotsContainer = document.getElementById('carousel-dots')
 
 
-for (let i = 0; i < totalSlides - 1; i++) {
-    carouselDot += ` <div class="carousel-dot"></div>`
+for (let i = 0; i < totalSlides; i++) {
+    let dot = document.createElement('div')
+    dot.className = "carousel-dot"
+    dot.id = `slide-${i}`
+    dot.dataset.index = i
+    carouselDotsContainer.appendChild(dot)
 }
 
-carouselDots.innerHTML = carouselDot
+const firstDot = carouselDotsContainer.firstChild.nextElementSibling
+firstDot.classList.add('current-dot')
+
 const dots = document.getElementsByClassName('carousel-dot')
 
-
+let slidePosition = document.querySelector('.current-dot').dataset.index
 
 function moveToNextSlide() {
-    dots[slidePosition].classList.toggle("current-dot")
-    slides[slidePosition].classList.toggle("carousel-item-visible")
+    removeClass()
     if (slidePosition === totalSlides - 1) {
         slidePosition = 0
     } else {
@@ -41,8 +43,7 @@ function moveToNextSlide() {
 }
 
 function moveToPrevSlide() {
-    dots[slidePosition].classList.toggle("current-dot")
-    slides[slidePosition].classList.toggle("carousel-item-visible")
+    removeClass()
     if ( slidePosition === 0) {
         slidePosition = totalSlides - 1
     } else {
@@ -50,4 +51,28 @@ function moveToPrevSlide() {
     }
     dots[slidePosition].classList.toggle("current-dot")
     slides[slidePosition].classList.toggle("carousel-item-visible")
+}
+
+
+let carouselDots = document.querySelectorAll('.carousel-dot')
+
+carouselDots.forEach(item => {
+    item.addEventListener('click', event => {
+      moveSlide(item)
+    })
+})
+
+function moveSlide(item) {
+    removeClass()
+    let index = item.dataset.index
+    slidePosition = index
+    dots[index].classList.toggle("current-dot")
+    slides[index].classList.toggle("carousel-item-visible")
+}
+
+function removeClass() {
+    let currentDot = document.querySelector('.current-dot')
+    let currentSlide = document.querySelector('.carousel-item-visible')
+    currentDot.classList.toggle(    'current-dot')
+    currentSlide.classList.toggle('carousel-item-visible')
 }

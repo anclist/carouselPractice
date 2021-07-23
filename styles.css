@@ -85,6 +85,7 @@ the edges of the slides, but adequately spaced
     background: white;
     margin-right: 3px;
     border: 1px solid darkgray;
+    cursor: pointer;
 }
 
 .current-dot {
