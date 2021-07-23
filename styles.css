@@ -21,6 +21,7 @@ the edges of the slides, but adequately spaced
 }
 
 .carousel {
+    width: 100%;
     max-width: 600px;
     position: relative;
     margin: 0 auto;
